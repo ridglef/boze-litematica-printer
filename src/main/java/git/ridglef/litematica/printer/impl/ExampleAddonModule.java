@@ -1,4 +1,4 @@
-package com.example.addon.impl;
+package git.ridglef.litematica.printer.impl;
 
 import com.google.gson.JsonObject;
 import dev.boze.api.BozeInstance;
@@ -95,14 +95,18 @@ public abstract class ExampleAddonModule implements AddonModule, ModuleInfo, Ser
 
             if (state) {
                 BozeInstance.INSTANCE.subscribe(this);
+                onEnable();
             } else {
                 BozeInstance.INSTANCE.unsubscribe(this);
+                onDisable();
             }
 
             return true;
         }
         return false;
     }
+    public void onEnable() {}
+    public void onDisable() {}
 
     @Override
     public Bind getBind() {

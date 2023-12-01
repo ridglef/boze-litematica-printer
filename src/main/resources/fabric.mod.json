@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
-  "id": "addon",
+  "id": "boze-litematica-printer",
   "version": "${version}",
-  "name": "Example Addon",
-  "description": "An example addon for the Boze Addon API",
+  "name": "boze-litematica-printer",
+  "description": "boze-litematica-printer",
   "authors": [],
   "contact": {
-    "repo": "https://github.com/boze-dev/example-addon"
+    "repo": "https://github.com/ridglef/boze-litematica-printer/"
   },
   "license": "GPL-3.0",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.example.addon.ExampleAddon"
+      "git.ridglef.litematica.printer.ExampleAddon"
     ]
   },
   "mixins": [

@@ -1,10 +1,8 @@
-package com.example.addon;
+package git.ridglef.litematica.printer;
 
-import com.example.addon.impl.ExampleAddonDispatcher;
-import com.example.addon.impl.ExampleAddonModule;
-import com.example.addon.modules.ExampleModule;
+import git.ridglef.litematica.printer.impl.ExampleAddonModule;
+import git.ridglef.litematica.printer.modules.LitematicaPrinter;
 import com.google.gson.JsonObject;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.boze.api.BozeInstance;
 import dev.boze.api.Globals;
 import dev.boze.api.addon.Addon;
@@ -17,24 +15,19 @@ import dev.boze.api.exception.AddonInitializationException;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.impl.util.log.Log;
 import net.fabricmc.loader.impl.util.log.LogCategory;
-import net.minecraft.command.CommandSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
-
 public class ExampleAddon implements ModInitializer, Addon, Serializable<ExampleAddon> {
 
     public final AddonMetadata metadata = new AddonMetadata(
-            "example-addon",
-            "Example Addon",
-            "An example addon for Boze",
+            "boze-litematica-printer",
+            "boze-litematica-printer",
+            "boze-litematica-printer",
             new AddonVersion(1, 0, 0));
 
     private final ArrayList<AddonModule> modules = new ArrayList<>();
-
-    private ExampleAddonDispatcher dispatcher;
 
     @Override
     public void onInitialize() {
@@ -56,17 +49,7 @@ public class ExampleAddon implements ModInitializer, Addon, Serializable<Example
         BozeInstance.INSTANCE.registerPackage("com.example.addon");
 
         // Initialize module
-        modules.add(new ExampleModule());
-
-        // Initialize commands
-        dispatcher = new ExampleAddonDispatcher();
-
-        LiteralArgumentBuilder<CommandSource> builder = LiteralArgumentBuilder.literal("testcommand");
-        builder.executes(context -> {
-            Globals.getChatHelper().sendMsg("Test addon's command executed!");
-            return SINGLE_SUCCESS;
-        });
-        getDispatcher().getDispatcher().register(builder);
+        modules.add(new LitematicaPrinter());
 
         // Load config
         Globals.getJsonTools().loadObject(this, "config", this);
@@ -87,7 +70,7 @@ public class ExampleAddon implements ModInitializer, Addon, Serializable<Example
 
     @Override
     public AddonDispatcher getDispatcher() {
-        return dispatcher;
+        return null;
     }
 
     @Override

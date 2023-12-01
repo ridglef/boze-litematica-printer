@@ -1,4 +1,4 @@
-package com.example.addon.impl;
+package git.ridglef.litematica.printer.impl;
 
 import dev.boze.api.input.Bind;
 
